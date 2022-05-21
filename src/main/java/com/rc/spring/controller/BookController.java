@@ -19,7 +19,7 @@ public class BookController {
   private BookRepository bookRepository;
 
   @GetMapping("/book/{id}")
-  public Book bookById(@PathVariable int id){
+  public Book bookById(@PathVariable int id) {
     return bookRepository.findById(id);
   }
 
@@ -30,11 +30,8 @@ public class BookController {
 
   @PostMapping("/book")
   public ResponseEntity<String> addBook(@RequestBody Book book) {
-    try {
-      bookRepository.save(Book.builder().name(book.getName()).description(book.getDescription()).build());
-      return new ResponseEntity<>("Successful!", HttpStatus.CREATED);
-    } catch (Exception e) {
-      return new ResponseEntity<>("Failure", HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+    bookRepository
+        .save(Book.builder().name(book.getName()).description(book.getDescription()).build());
+    return new ResponseEntity<>("Successful!", HttpStatus.CREATED);
   }
 }
