@@ -1,6 +1,6 @@
 package com.rc.spring.controller;
 
-import com.rc.spring.Model.Employee;
+import com.rc.spring.model.Employee;
 import com.rc.spring.repository.EmployeeRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

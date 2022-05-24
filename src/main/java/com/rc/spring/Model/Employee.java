@@ -1,4 +1,4 @@
-package com.rc.spring.Model;
+package com.rc.spring.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
