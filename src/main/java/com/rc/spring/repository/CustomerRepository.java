@@ -1,6 +1,6 @@
 package com.rc.spring.repository;
 
-import com.rc.spring.model.CustomerJPA;
+import com.rc.spring.model.Customer;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,42 +15,47 @@ public class CustomerRepository {
   @PersistenceContext
   private EntityManager entityManager;
 
-  public List<CustomerJPA> findAll() {
-    TypedQuery<CustomerJPA> query = entityManager.createQuery("SELECT c FROM CustomerJPA c", CustomerJPA.class);
+  public List<Customer> findAll() {
+    TypedQuery<Customer> query = entityManager
+        .createQuery("SELECT c FROM Customer c", Customer.class);
     return query.getResultList();
   }
 
-  public List<CustomerJPA> findByNameContaining(String name) {
-    TypedQuery<CustomerJPA> query = entityManager.createQuery(
-        "SELECT c FROM CustomerJPA c WHERE LOWER(c.name) LIKE LOWER(CONCAT('%', :name,'%'))",
-        CustomerJPA.class);
+  public List<Customer> findByNameContaining(String name) {
+    TypedQuery<Customer> query = entityManager.createQuery(
+        "SELECT c FROM Customer c WHERE LOWER(c.name) LIKE LOWER(CONCAT('%', :name,'%'))",
+        Customer.class);
     return query.setParameter("name", name).getResultList();
   }
 
   @Transactional
-  public CustomerJPA save(CustomerJPA customer) {
+  public Customer save(Customer customer) {
     entityManager.persist(customer);
     return customer;
   }
-  public CustomerJPA findById(long id) {
-    return  entityManager.find(CustomerJPA.class, id);
+
+  public Customer findById(long id) {
+    return entityManager.find(Customer.class, id);
   }
+
   @Transactional
-  public CustomerJPA update(CustomerJPA customer) {
+  public Customer update(Customer customer) {
     entityManager.merge(customer);
     return customer;
   }
+
   @Transactional
-  public CustomerJPA deleteById(long id) {
-    CustomerJPA Customer = findById(id);
+  public Customer deleteById(long id) {
+    Customer Customer = findById(id);
     if (Customer != null) {
       entityManager.remove(Customer);
     }
     return Customer;
   }
+
   @Transactional
   public int deleteAll() {
-    Query query = entityManager.createQuery("DELETE FROM CustomerJPA");
+    Query query = entityManager.createQuery("DELETE FROM Customer");
     return query.executeUpdate();
   }
 

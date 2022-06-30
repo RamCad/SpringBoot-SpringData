@@ -1,6 +1,6 @@
 package com.rc.spring.controller;
 
-import com.rc.spring.model.CustomerJPA;
+import com.rc.spring.model.Customer;
 import com.rc.spring.repository.CustomerRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,18 +17,18 @@ public class CustomerController {
   private CustomerRepository customerRepository;
 
   @GetMapping("/customer")
-  public List<CustomerJPA> getCustomers() {
+  public List<Customer> getCustomers() {
     return customerRepository.findAll();
   }
 
   @GetMapping("/customer/{id}")
-  public CustomerJPA getCustomerById(@PathVariable Long id) {
+  public Customer getCustomerById(@PathVariable Long id) {
     return customerRepository.findById(id);
   }
 
   @PostMapping("/customer")
-  public CustomerJPA createCustomer(@RequestBody CustomerJPA customerJPA) {
-    return customerRepository.save(customerJPA);
+  public Customer createCustomer(@RequestBody Customer customer) {
+    return customerRepository.save(customer);
   }
 
 }

@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerJPA {
+public class Customer {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
