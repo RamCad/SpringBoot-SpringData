@@ -38,7 +38,7 @@ public class CustomerRepository {
     return entityManager.find(Customer.class, id);
   }
 
-  @Transactional
+  @Transactional()
   public Customer update(Customer customer) {
     entityManager.merge(customer);
     return customer;
